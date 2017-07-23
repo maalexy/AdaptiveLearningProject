@@ -40,7 +40,7 @@ def train():
         else:
             cnoise *= 1.03
         if cb % 100 == 0:
-            print("SHOW: ", cb, cnoise)
+            print("SHOW: ", cb)
             yield HillClimber(spar)
         cb += 1
     avgnoise /= updb
@@ -53,14 +53,14 @@ def train():
     
 if __name__ == "__main__":
     for ok in train():
-        lst = []
+        cpt = 0
         for x in range(100):
             tester = InvPerSim()
             tester.randomize()
             #tester.start_show(800)
             res = tester.ct_sim(ok)
-            lst.append(res)
+            cpt += 1 / res
             #tester.stop_show()
-        print("POINTS: ", np.average(lst))
+        print("POINTS: ", 1/cpt)
     
     
