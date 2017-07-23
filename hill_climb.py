@@ -61,6 +61,6 @@ if __name__ == "__main__":
             res = tester.ct_sim(ok)
             cpt += 1 / res
             #tester.stop_show()
-        print("POINTS: ", 1/cpt)
+        print("POINTS: ", 100/cpt)
     
     
