@@ -24,7 +24,6 @@ def train():
     updb = 0
     for cb in range(1500):
         dpar = spar + randarr() * cnoise        
-        cenvs = [env.copy() for env in envs]
         nowpt = 0
         for _ in range(numenv):
             ev = InvPerSim().randomize()
