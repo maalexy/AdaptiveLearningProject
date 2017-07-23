@@ -21,17 +21,16 @@ def train():
     envs = [InvPerSim().randomize() for _ in range(numenv)]
     bestpt = 0
     cnoise = 0.01
-    cb = 1
     avgnoise = 0
     updb = 0
-    for _ in range(1500):
+    for cb in range(1, 1500):
         dpar = spar + randarr() * cnoise        
         cenvs = [env.copy() for env in envs]
         nowpt = 0
         for ev in cenvs:
             nowpt += 1/ev.ct_sim(HillClimber(dpar))
         nowpt = numenv / nowpt
-        if(nowpt > bestpt * 1.01):
+        if(nowpt > bestpt):
             print(cb, bestpt, nowpt, cnoise)
             bestpt = nowpt
             spar = dpar
