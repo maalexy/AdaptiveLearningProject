@@ -14,7 +14,7 @@ class HillClimber:
             return -20
 
 def train():
-    numenv = 10
+    numenv = 25
     noise = 0.01
     randarr = lambda: 1 - 2 * np.random.rand(4, 2)
     spar = randarr()
@@ -53,13 +53,13 @@ def train():
 if __name__ == "__main__":
     for ok in train():
         cpt = 0
-        for x in range(100):
+        for _ in range(100):
             tester = InvPerSim()
             tester.randomize()
             #tester.start_show(800)
             res = tester.ct_sim(ok)
-            cpt += 1 / res
+            cpt += res
             #tester.stop_show()
-        print("POINTS: ", 100/cpt)
+        print("POINTS: ", cpt / 100)
     
     
