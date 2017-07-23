@@ -14,11 +14,10 @@ class HillClimber:
             return -20
 
 def train():
-    numenv = 20
+    numenv = 10
     noise = 0.01
     randarr = lambda: 1 - 2 * np.random.rand(4, 2)
     spar = randarr()
-    envs = [InvPerSim().randomize() for _ in range(numenv)]
     bestpt = 0
     cnoise = 0.01
     avgnoise = 0
@@ -27,7 +26,8 @@ def train():
         dpar = spar + randarr() * cnoise        
         cenvs = [env.copy() for env in envs]
         nowpt = 0
-        for ev in cenvs:
+        for _ in range(numenv):
+            ev = InvPerSim().randomize()
             nowpt += 1/ev.ct_sim(HillClimber(dpar))
         nowpt = numenv / nowpt
         if(nowpt > bestpt):
