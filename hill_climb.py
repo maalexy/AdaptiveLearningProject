@@ -24,7 +24,7 @@ def train():
     cb = 1
     avgnoise = 0
     updb = 0
-    while bestpt < 100:
+    for _ in range(1500):
         dpar = spar + randarr() * cnoise        
         cenvs = [env.copy() for env in envs]
         nowpt = 0

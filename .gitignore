@@ -97,3 +97,14 @@ ENV/
 
 # mypy
 .mypy_cache/
+.vs
+/.vs
+/.vs
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
+/.vs/AdaptiveLearningProject/v15/.suo
+/.vs/AdaptiveLearningProject/v15
+/.vs
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
+/.vs/AdaptiveLearningProject/v15/.suo
