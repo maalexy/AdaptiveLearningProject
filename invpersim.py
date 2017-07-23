@@ -71,20 +71,6 @@ class InvPerSim:
                            10, 0)
         pygame.display.flip()
 
-    def step(self, dt, acc):
-        if abs(acc) > 20: 
-            acc = copysign(acc, 20)
-        self.vel += acc * dt
-        self.pos += self.vel * dt
-        ang_acc = 10.0 * sin(self.tilt) - acc * cos(self.tilt)
-        self.ang_vel += ang_acc * dt
-        self.tilt = self.tilt + self.ang_vel * dt
-        self.tilt = fmod(self.tilt, 2*pi)
-        if self.tilt > +pi:
-            self.tilt -= 2*pi
-        if self.tilt < -pi:
-            self.tilt += 2*pi
-
     def sim(self, time_ctrl, test_func):
         err = 0.0
         time_ctrl.start()
@@ -92,7 +78,11 @@ class InvPerSim:
             dt = time_ctrl.dtime()
             acc = test_func(self.tilt, self.ang_vel,
                             self.pos, self.vel)
-            self.step(dt, acc)
+            self.vel += acc * dt
+            self.pos += self.vel * dt
+            ang_acc = 10.0 * sin(self.tilt) - acc * cos(self.tilt)
+            self.ang_vel += ang_acc * dt
+            self.tilt += self.ang_vel * dt
             nerr = 0.0
             nerr += 3.0 * cos(self.tilt)
             nerr += 1.0 * (1 / (1 + self.ang_vel ** 2))
