@@ -23,7 +23,7 @@ def train():
     cnoise = 0.01
     avgnoise = 0
     updb = 0
-    for cb in range(1, 1500):
+    for cb in range(1500):
         dpar = spar + randarr() * cnoise        
         cenvs = [env.copy() for env in envs]
         nowpt = 0
@@ -46,6 +46,8 @@ def train():
     avgnoise /= updb
     print("FINISHED IN {} STEP WITH {} POINTS".format(cb, bestpt))
     print("NEEDED {} IMPROVEMENT WITH {} NOISE".format(updb, avgnoise))
+    print("FINAL TENSOR:")
+    print(spar)
     yield HillClimber(spar)
     
     
@@ -60,5 +62,5 @@ if __name__ == "__main__":
             lst.append(res)
             #tester.stop_show()
         print("POINTS: ", np.average(lst))
-        
+    
     
